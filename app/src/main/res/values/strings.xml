@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Students</string>
+    <string name="app_name1">Student Checklist</string>
     <string name="add_record">Add Record</string>
     <string name="view_record">View Checklist</string>
     <string name="btn_update">Update</string>

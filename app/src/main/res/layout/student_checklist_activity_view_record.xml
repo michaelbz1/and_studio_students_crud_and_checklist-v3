@@ -4,24 +4,41 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
-    <CheckBox android:id="@+id/check"
-        android:layout_width="fill_parent"
+    <TextView
+        android:id="@+id/studentname"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="4dp"
+        android:text="New Text"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="30dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="28dp" />
+
+    <CheckBox android:id="@+id/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:focusable="true"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginRight="10dp"
-        android:layout_below="@+id/studentper"
-        android:theme="@style/MyCheckBox"
-        />
-    
+        android:scaleX="2"
+        android:scaleY="2"/>
+
     <TextView
         android:id="@+id/id"
-        android:layout_width="25dp"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginRight="6dp"
         android:padding="3dp"
-        android:visibility="visible" />
+        android:visibility="invisible"
+        android:layout_below="@+id/studentname"
+        android:layout_toEndOf="@+id/check"
+        android:layout_marginStart="76dp" />
 
     <TextView
         android:id="@+id/studentid"
@@ -32,18 +49,8 @@
         android:maxLines="1"
         android:padding="3dp"
         android:textSize="17sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/studentname"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_below="@id/studentid"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:padding="3dp"
-        android:visibility="visible" />
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/studentper"
@@ -54,6 +61,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:padding="3dp"
-        android:visibility="visible" />
+        android:visibility="invisible" />
+
 
 </RelativeLayout>
