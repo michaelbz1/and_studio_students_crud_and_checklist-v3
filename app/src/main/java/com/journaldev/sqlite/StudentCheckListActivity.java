@@ -57,7 +57,7 @@ public class StudentCheckListActivity extends ActionBarActivity {
                 String studentname = studentnameTextView.getText().toString();
                 String studentper = studentperTextView.getText().toString();
 
-                Intent modify_intent = new Intent(getApplicationContext(), ModifyCountryActivity.class);
+                Intent modify_intent = new Intent(getApplicationContext(), ModifyStudentActivity.class);
                 modify_intent.putExtra("studentid", studentid);
                 modify_intent.putExtra("studentname", studentname);
                 modify_intent.putExtra("studentper", studentper);
@@ -80,17 +80,16 @@ public class StudentCheckListActivity extends ActionBarActivity {
         int id = item.getItemId();
         if (id == R.id.add_record) {
 
-            Intent add_mem = new Intent(this, AddCountryActivity.class);
+            Intent add_mem = new Intent(this, AddStudentActivity.class);
             startActivity(add_mem);
 
         }
         //THIS IS MY ADDITION TO SEE IF I CAN RUN ANOTHER ACTIVITY
         if (id == R.id.view_record) {
 
-            Intent view_mem = new Intent(this, MyListActivity.class);
-            startActivity(view_mem);
 
         }
+
         return super.onOptionsItemSelected(item);
     }
 

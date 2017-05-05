@@ -50,7 +50,7 @@
         android:padding="3dp"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:visibility="invisible"/>
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/studentper"
@@ -61,7 +61,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:padding="3dp"
-        android:visibility="invisible" />
+        android:visibility="gone" />
 
 
 </RelativeLayout>

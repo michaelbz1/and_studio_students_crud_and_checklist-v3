@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class ModifyCountryActivity extends Activity implements OnClickListener {
+public class ModifyStudentActivity extends Activity implements OnClickListener {
 
     private EditText studentidText;
     private EditText studentnameText;
@@ -76,7 +76,7 @@ public class ModifyCountryActivity extends Activity implements OnClickListener {
     }
 
     public void returnHome() {
-        Intent home_intent = new Intent(getApplicationContext(), CountryListActivity.class)
+        Intent home_intent = new Intent(getApplicationContext(), StudentListActivity.class)
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(home_intent);
     }

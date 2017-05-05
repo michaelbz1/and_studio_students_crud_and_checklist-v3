@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddCountryActivity extends Activity implements OnClickListener {
+public class AddStudentActivity extends Activity implements OnClickListener {
 
     private Button addTodoBtn;
     private EditText studentidEditText;
@@ -50,7 +50,7 @@ public class AddCountryActivity extends Activity implements OnClickListener {
 
                 dbManager.insert(studentid, studentname, studentper);
 
-                Intent main = new Intent(AddCountryActivity.this, CountryListActivity.class)
+                Intent main = new Intent(AddStudentActivity.this, StudentListActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 startActivity(main);

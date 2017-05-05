@@ -4,8 +4,13 @@ package com.journaldev.sqlite;
  * Created by anupamchugh on 19/10/15.
  */
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -41,5 +46,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+    public ArrayList<HashMap<String, String>> getAllProducts() {
+
+        ArrayList<HashMap<String, String>> journalList;
+        journalList = new ArrayList<HashMap<String, String>>();
+        String selectQuery = "SELECT  * FROM STUDENTS";
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                //Id, Company,Name,Price
+                HashMap<String, String> map = new HashMap<String, String>();
+                map.put("a", cursor.getString(0));
+                map.put("b", cursor.getString(1));
+                map.put("c", cursor.getString(2));
+                journalList.add(map);
+                Log.e("dataofList", cursor.getString(0) + "," + cursor.getString(1) + "," + cursor.getString(2));
+            } while (cursor.moveToNext());
+        }
+        return journalList;
     }
 }
