@@ -89,7 +89,15 @@ public class StudentListActivity extends ActionBarActivity {
 
             Intent view_mem = new Intent(this, StudentCheckListActivity.class);
             startActivity(view_mem);
-         }
+        }
+
+        //THIS IS THE OTHER ICON ON THE TOP.  SORT OF A SETTINGS LOOKING THING
+        if (id == R.id.another_record) {
+
+            Intent view_mem = new Intent(this, ImportMainActivity.class);
+            startActivity(view_mem);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
