@@ -5,6 +5,7 @@ package com.journaldev.sqlite;
  */
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -68,5 +69,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return journalList;
+    }
+    public Cursor fetchCountriesByName(String inputText) throws SQLException {
+        //Log.w(TAG, inputText);
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor mCursor = null;
+        if (inputText == null  ||  inputText.length () == 0)  {
+            mCursor = database.query(DatabaseHelper.TABLE_NAME, new String[] {DatabaseHelper._ID,
+                            DatabaseHelper.STUDENTID, DatabaseHelper.STUDENTNAME, DatabaseHelper.STUDENTPER},
+                    null, null, null, null, null);
+
+        }
+        else {
+            mCursor = database.query(true, DatabaseHelper.TABLE_NAME, new String[] {DatabaseHelper._ID,
+                            DatabaseHelper.STUDENTID, DatabaseHelper.STUDENTNAME, DatabaseHelper.STUDENTPER},
+                    DatabaseHelper.STUDENTPER + " like '%" + inputText + "%'", null,
+                    null, null, null, null);
+        }
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+
     }
 }

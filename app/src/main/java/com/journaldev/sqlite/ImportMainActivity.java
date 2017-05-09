@@ -79,9 +79,10 @@ public class ImportMainActivity extends ListActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (data == null)
-
+        if (data == null) {
+            Log.e("data123456", "logging123456");
             return;
+        }
         switch (requestCode) {
 
             case requestcode:
@@ -110,7 +111,7 @@ public class ImportMainActivity extends ListActivity {
                                 String name = str[0].toString();
                                 String issn = str[1].toString();
                                 String imp = str[2].toString();
-                                Log.e("data", name);
+                                Log.e("data123456", name);
                                 contentValues.put("StudentID", name);
                                 contentValues.put("StudentName", issn);
                                 contentValues.put("StudentPeriod", imp);
@@ -123,15 +124,12 @@ public class ImportMainActivity extends ListActivity {
                             db.endTransaction();
 
                         } catch (SQLException e) {
-                            Log.e("Error", e.getMessage().toString());
+                            Log.e("Error1" + filepath , e.getMessage().toString());
                         } catch (IOException e) {
 
                             if (db.inTransaction())
                                 db.endTransaction();
-                            Dialog d = new Dialog(this);
-                            d.setTitle(e.getMessage().toString() + "first");
-                            d.show();
-                            // db.endTransaction();
+                            Log.e("Error2", e.getMessage().toString());
                         }
                     } else {
 
@@ -144,10 +142,7 @@ public class ImportMainActivity extends ListActivity {
                 } catch (Exception ex) {
                     if (db.inTransaction())
                         db.endTransaction();
-                    Dialog d = new Dialog(this);
-                    d.setTitle(ex.getMessage().toString() + "second");
-                    d.show();
-                    // db.endTransaction();
+                    Log.e("Error3", ex.getMessage().toString());
                 }
 
         }
@@ -172,4 +167,6 @@ public class ImportMainActivity extends ListActivity {
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(home_intent);
     }
+
+
 }
