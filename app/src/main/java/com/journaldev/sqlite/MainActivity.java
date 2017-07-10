@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.journaldev.sqlite.database.DataSource;
+import com.journaldev.sqlite.database.StudentDataSource;
 import com.journaldev.sqlite.model.DataItem;
 import com.journaldev.sqlite.sample.SampleDataProvider;
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     List<DataItem> dataItemList = SampleDataProvider.dataItemList;
 
-    DataSource mDataSource;
+    StudentDataSource mDataSource;
     List<DataItem> listFromDB;
     DrawerLayout mDrawerLayout;
     ListView mDrawerList;
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         });
 //      end of navigation drawer
 
-        mDataSource = new DataSource(this);
+        mDataSource = new StudentDataSource(this);
         mDataSource.open();
         mDataSource.seedDatabase(dataItemList);
 
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         displayDataItems(null);
     }
-
+//Populate the student list from the StudentDataSource.
     private void displayDataItems(String category) {
         listFromDB = mDataSource.getAllItems(category);
         mItemAdapter = new DataItemAdapter(this, listFromDB);

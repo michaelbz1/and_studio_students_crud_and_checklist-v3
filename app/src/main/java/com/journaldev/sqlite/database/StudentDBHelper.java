@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DBHelper extends SQLiteOpenHelper {
+public class StudentDBHelper extends SQLiteOpenHelper {
 
     ///////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final int DB_VERSION = 6;
 
     //Create the database.
-    public DBHelper(Context context)
+    public StudentDBHelper(Context context)
     {
         super(context, DB_FILE_NAME, null, DB_VERSION);
     }

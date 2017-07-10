@@ -24,6 +24,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
 
     public static final String ITEM_ID_KEY = "item_id_key";
     public static final String ITEM_ID = "item_id";
+    public static final String ITEM_NAME = "item_name";
     public static final String ITEM_KEY = "item_key";
     private List<DataItem> mItems;
     private Context mContext;
@@ -85,6 +86,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
                 Intent intent = new Intent(mContext, BehaviorListActivity.class);
                 intent.putExtra(ITEM_KEY, item);
                 intent.putExtra(ITEM_ID, item.getItemId());
+                intent.putExtra(ITEM_NAME, item.getItemName());
                 mContext.startActivity(intent);
             }
         });

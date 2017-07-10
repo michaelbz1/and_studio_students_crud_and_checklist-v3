@@ -13,15 +13,15 @@ import com.journaldev.sqlite.model.DataItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataSource {
+public class StudentDataSource {
 
     private Context mContext;
     private SQLiteDatabase mDatabase;
     SQLiteOpenHelper mDbHelper;
 
-    public DataSource(Context context) {
+    public StudentDataSource(Context context) {
         this.mContext = context;
-        mDbHelper = new DBHelper(mContext);
+        mDbHelper = new StudentDBHelper(mContext);
         mDatabase = mDbHelper.getWritableDatabase();
     }
 

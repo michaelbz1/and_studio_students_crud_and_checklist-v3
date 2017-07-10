@@ -56,6 +56,7 @@ public class DBBehaviorManager {
         }
         return cursor;
     }
+
     public int update(long _id, String student_id, String student_name, String student_per) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseBehaviorHelper.BEHAVIORID, student_id);
@@ -81,7 +82,7 @@ public class DBBehaviorManager {
         else {
             mCursor = database.query(true, DatabaseBehaviorHelper.TABLE_NAME, new String[] {DatabaseBehaviorHelper._ID,
                             DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE},
-                    DatabaseBehaviorHelper.BEHAVIORDATE + " like '%" + inputText + "%'", null,
+                    DatabaseBehaviorHelper.BEHAVIORID + " like '%" + inputText + "%'", null,
                     null, null, null, null);
         }
         if (mCursor != null) {

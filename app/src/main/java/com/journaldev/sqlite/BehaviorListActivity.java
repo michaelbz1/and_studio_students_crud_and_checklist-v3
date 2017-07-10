@@ -22,6 +22,7 @@ public class BehaviorListActivity extends AppCompatActivity {
     private ListView listView;
     private TextView textView;
     public String itemId;
+    public String itemname;
 
     private SimpleCursorAdapter adapter;
 
@@ -33,30 +34,35 @@ public class BehaviorListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        //get rid of annoying keyboard
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.fragment_behavior_list);
 
-        dbManager = new DBBehaviorManager(this);
-        dbManager.open();
-        Cursor cursor = dbManager.fetch();
 
-
-        textView = (TextView) findViewById(R.id.textView);
-        String studentid = "Jeys";
-        textView.setText(studentid);
 
         Intent intent = getIntent();
         Bundle bundle =  intent.getExtras();
         //This messed with me for TOO LONG!  DataItemAdapter  ITEM_ID = "item_id" and thats whats needed
         if (bundle != null) {
             itemId = bundle.getString("item_id");
+            itemname = bundle.getString("item_name");
         }
-        Toast.makeText(this, "You selected " + itemId,
+
+        dbManager = new DBBehaviorManager(this);
+        dbManager.open();
+        //Cursor cursor = dbManager.fetch();
+        Cursor cursor = dbManager.fetchCountriesByName(itemId);
+
+
+        Toast.makeText(this, "You selected " + itemId + " " + itemname,
                 Toast.LENGTH_SHORT).show();
 
+        textView = (TextView) findViewById(R.id.textView);
+        String studentname = itemname;
+        textView.setText(studentname);
 
         listView = (ListView) findViewById(R.id.list_view);
         listView.setEmptyView(findViewById(R.id.empty));

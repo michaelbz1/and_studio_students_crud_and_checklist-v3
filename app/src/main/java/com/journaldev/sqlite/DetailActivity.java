@@ -1,26 +1,15 @@
 package com.journaldev.sqlite;
 
-import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.journaldev.sqlite.database.DataSource;
+import com.journaldev.sqlite.database.StudentDataSource;
 import com.journaldev.sqlite.model.DataItem;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -33,7 +22,7 @@ public class DetailActivity extends AppCompatActivity {
     private String[] mCategories;
     private ListView mList;
 
-    DataSource mDataSource;
+    StudentDataSource mDataSource;
     List<DataItem> listFromDB;
     DataItemAdapter mItemAdapter;
 
@@ -61,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
         mCategories = getResources().getStringArray(R.array.categories);
         mList = (ListView) findViewById(R.id.recycle_categories);
 
-        mDataSource = new DataSource(this);
+        mDataSource = new StudentDataSource(this);
         mDataSource.open();
         listFromDB = mDataSource.getAllItems(null);
         mItemAdapter = new DataItemAdapter(this, listFromDB);
