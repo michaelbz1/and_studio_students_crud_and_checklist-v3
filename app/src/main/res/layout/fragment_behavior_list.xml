@@ -3,6 +3,18 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <EditText android:id="@+id/myFilter" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:ems="10"
+        android:hint="@string/some_hint">
+        <requestFocus />
+    </EditText>
+
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
@@ -10,8 +22,6 @@
         android:dividerHeight="1dp"
         android:padding="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
         android:layout_marginBottom="12dp">
     </ListView>
 
@@ -21,7 +31,5 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/empty_list_text" />
-
-
 
 </RelativeLayout>

@@ -5,18 +5,24 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class StudentCheckListActivity extends ActionBarActivity {
+
+
+public class StudentCheckListActivity extends AppCompatActivity {
+
 
     private DBManager dbManager;
 
@@ -28,6 +34,7 @@ public class StudentCheckListActivity extends ActionBarActivity {
             DatabaseHelper.STUDENTID, DatabaseHelper.STUDENTNAME, DatabaseHelper.STUDENTPER };
 
     final int[] to = new int[] { R.id.id, R.id.studentid, R.id.studentname, R.id.studentper };
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,38 +68,22 @@ public class StudentCheckListActivity extends ActionBarActivity {
                 String studentname = studentnameTextView.getText().toString();
                 String studentper = studentperTextView.getText().toString();
 
-                Intent modify_intent = new Intent(getApplicationContext(), ModifyStudentActivity.class);
-                modify_intent.putExtra("studentid", studentid);
-                modify_intent.putExtra("studentname", studentname);
-                modify_intent.putExtra("studentper", studentper);
-                modify_intent.putExtra("id", id);
+                //Intent modify_intent = new Intent(getApplicationContext(), ModifyStudentActivity.class);
+                Intent modify_intent = new Intent(getApplicationContext(), DetailActivity.class);
+//                modify_intent.putExtra("studentid", studentid);
+//                modify_intent.putExtra("studentname", studentname);
+//                modify_intent.putExtra("studentper", studentper);
+//                modify_intent.putExtra("id", id);
 
                 startActivity(modify_intent);
             }
         });
 
-        EditText myFilter = (EditText) findViewById(R.id.myFilter);
-        myFilter.addTextChangedListener(new TextWatcher() {
 
-            public void afterTextChanged(Editable s) {
-            }
-
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
-            }
-
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                adapter.getFilter().filter(s.toString());
-            }
-        });
-
-        adapter.setFilterQueryProvider(new FilterQueryProvider() {
-            public Cursor runQuery(CharSequence constraint) {
-                return dbManager.fetchCountriesByName(constraint.toString());
-            }
-        });
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -118,5 +109,4 @@ public class StudentCheckListActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-}
+ }
