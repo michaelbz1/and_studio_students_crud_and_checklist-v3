@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,6 +32,9 @@ public class BehaviorListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.fragment_behavior_list);
@@ -70,7 +75,7 @@ public class BehaviorListActivity extends AppCompatActivity {
                 TextView studentnameTextView = (TextView) view.findViewById(R.id.studentname);
                 TextView studentperTextView = (TextView) view.findViewById(R.id.studentper);
 
-                String id = itemId;
+                String id = idTextView.getText().toString();
                 String studentid = studentidTextView.getText().toString();
                 String studentname = studentnameTextView.getText().toString();
                 String studentper = studentperTextView.getText().toString();
@@ -128,6 +133,7 @@ public class BehaviorListActivity extends AppCompatActivity {
             Toast.makeText(this, "You selected " + itemId,
                     Toast.LENGTH_SHORT).show();
             add_mem.putExtra("item_id", itemId);
+            //this is the one for add.  See above for modify
             startActivity(add_mem);
 
         }

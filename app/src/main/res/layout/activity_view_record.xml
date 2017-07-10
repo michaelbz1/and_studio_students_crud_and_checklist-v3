@@ -12,18 +12,19 @@
         android:layout_alignParentTop="true"
         android:layout_marginRight="6dp"
         android:padding="3dp"
-        android:visibility="gone" />
+        android:visibility="invisible" />
 
     <TextView
         android:id="@+id/studentid"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_below="@id/id"
+        android:layout_marginLeft="10dp"
         android:maxLines="1"
         android:padding="3dp"
         android:textSize="17sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/studentname"

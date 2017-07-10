@@ -55,7 +55,6 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
         deleteBtn = (Button) findViewById(R.id.btn_delete);
 
         Intent intent = getIntent();
-        String item_id = intent.getStringExtra("id");
         String id = intent.getStringExtra("id");
         String studentid = intent.getStringExtra("studentid");
 
@@ -72,9 +71,7 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month+1, day);
 
-
-         _id = Long.parseLong(id);
-
+        _id = Long.parseLong(id);
 
         studentidText.setText(studentid);
         //studentnameText.setText(name);
