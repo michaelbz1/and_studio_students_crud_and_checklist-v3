@@ -31,6 +31,7 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
     private DBBehaviorManager dbManager;
 
     public String itemId;
+    public String itemName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
         Bundle bundle =  intent.getExtras();
         //This messed with me for TOO LONG!  DataItemAdapter  ITEM_ID = "item_id" and thats whats needed
         itemId =  bundle.getString("item_id");
+        itemName =  bundle.getString("item_name");
 
         setTitle("Add Behavior Record for " + itemId);
 
@@ -85,6 +87,7 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
                 Intent main = new Intent(AddBehaviorActivity.this, BehaviorListActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 main.putExtra("item_id", itemId);
+                main.putExtra("item_name", itemName);
                 startActivity(main);
                 break;
         }

@@ -22,7 +22,7 @@ public class BehaviorListActivity extends AppCompatActivity {
     private ListView listView;
     private TextView textView;
     public String itemId;
-    public String itemname;
+    public String itemName;
 
     private SimpleCursorAdapter adapter;
 
@@ -48,7 +48,7 @@ public class BehaviorListActivity extends AppCompatActivity {
         //This messed with me for TOO LONG!  DataItemAdapter  ITEM_ID = "item_id" and thats whats needed
         if (bundle != null) {
             itemId = bundle.getString("item_id");
-            itemname = bundle.getString("item_name");
+            itemName = bundle.getString("item_name");
         }
 
         dbManager = new DBBehaviorManager(this);
@@ -57,16 +57,17 @@ public class BehaviorListActivity extends AppCompatActivity {
         Cursor cursor = dbManager.fetchCountriesByName(itemId);
 
 
-        Toast.makeText(this, "You selected " + itemId + " " + itemname,
+        Toast.makeText(this, "You selected " + itemId + " " + itemName,
                 Toast.LENGTH_SHORT).show();
 
         textView = (TextView) findViewById(R.id.textView);
-        String studentname = itemname;
+        String studentname = itemName;
         textView.setText(studentname);
 
         listView = (ListView) findViewById(R.id.list_view);
         listView.setEmptyView(findViewById(R.id.empty));
 
+        //adapter = new SimpleCursorAdapter(this, R.layout.behavior_view_record, cursor, from, to, 0);
         adapter = new SimpleCursorAdapter(this, R.layout.behavior_view_record, cursor, from, to, 0);
         adapter.notifyDataSetChanged();
 
@@ -92,6 +93,8 @@ public class BehaviorListActivity extends AppCompatActivity {
                 modify_intent.putExtra("studentper", studentper);
                 modify_intent.putExtra("id", id);
 
+                modify_intent.putExtra("item_id", itemId);
+                modify_intent.putExtra("item_name", itemName);
                 startActivity(modify_intent);
             }
         });
@@ -139,6 +142,7 @@ public class BehaviorListActivity extends AppCompatActivity {
             Toast.makeText(this, "You selected " + itemId,
                     Toast.LENGTH_SHORT).show();
             add_mem.putExtra("item_id", itemId);
+            add_mem.putExtra("item_name", itemName);
             //this is the one for add.  See above for modify
             startActivity(add_mem);
 

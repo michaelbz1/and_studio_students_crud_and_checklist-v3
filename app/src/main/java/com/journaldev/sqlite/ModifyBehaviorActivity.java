@@ -24,17 +24,29 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
     private int year, month, day;
 
     private EditText studentidText;
-    private EditText studentnameText;
+    private TextView studentnameText;
     private EditText studentperText;
     private Button updateBtn, deleteBtn;
 
     private long _id;
+
+    public String itemId;
+    public String itemName;
+
 
     private DBBehaviorManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
+        Bundle bundle =  intent.getExtras();
+        //This messed with me for TOO LONG!  DataItemAdapter  ITEM_ID = "item_id" and thats whats needed
+        itemId =  bundle.getString("item_id");
+        itemName =  bundle.getString("item_name");
+        Toast.makeText(this, "Sent " + itemId + " " + itemName,
+                Toast.LENGTH_SHORT).show();
 
         setTitle("Modify Record");
 
@@ -44,23 +56,27 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
         dbManager.open();
 
         studentidText = (EditText) findViewById(R.id.studentid_edittext);
-        //studentnameText = (EditText) findViewById(R.id.studentname_edittext);
 
-        Spinner mySpinner=(Spinner) findViewById(R.id.studentname_edittext);
-        String behaviorNameEditText = mySpinner.getSelectedItem().toString();
+        //studentnameText = (TextView) findViewById(R.id.studentname);
+        //String studentnameTextValue = studentnameText.toString();
+
+        //Spinner mySpinner = (Spinner) findViewById(R.id.studentname_edittext);
+        //String behaviorNameEditText = mySpinner.getSelectedItem().toString();
 
         studentperText = (EditText) findViewById(R.id.studentper_edittext);
 
         updateBtn = (Button) findViewById(R.id.btn_update);
         deleteBtn = (Button) findViewById(R.id.btn_delete);
 
-        Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
-        String studentid = intent.getStringExtra("studentid");
+//        Intent intent = getIntent();
+//        String studentid = intent.getStringExtra("item_id");
+
+        //String name = intent.getStringExtra("item_name");
 
         String name = intent.getStringExtra("studentname");
         Spinner spinner=(Spinner) findViewById(R.id.studentname_edittext);
         spinner.setSelection(getIndex(spinner, name));
+
 
         String period = intent.getStringExtra("studentper");
         //studentperText = (EditText) findViewById(R.id.studentper_edittext);
@@ -71,9 +87,10 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showDate(year, month+1, day);
 
+        String id = intent.getStringExtra("id");
         _id = Long.parseLong(id);
 
-        studentidText.setText(studentid);
+        studentidText.setText(itemId);
         //studentnameText.setText(name);
         studentperText.setText(period);
 
@@ -105,6 +122,7 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
                 String studentper = studentperText.getText().toString();
 
                 dbManager.update(_id, studentid, studentname, studentper);
+
                 this.returnHome();
                 break;
 
@@ -118,6 +136,8 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
     public void returnHome() {
         Intent home_intent = new Intent(getApplicationContext(), BehaviorListActivity.class)
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        home_intent.putExtra("item_id", itemId);
+        home_intent.putExtra("item_name", itemName);
         startActivity(home_intent);
     }
     @SuppressWarnings("deprecation")

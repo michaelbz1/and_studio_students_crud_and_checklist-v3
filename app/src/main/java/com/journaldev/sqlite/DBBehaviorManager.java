@@ -71,7 +71,7 @@ public class DBBehaviorManager {
     }
 
     public Cursor fetchCountriesByName(String inputText) throws SQLException {
-        Log.w(TAG, inputText);
+        //Log.w(TAG, inputText);
         Cursor mCursor = null;
         if (inputText == null  ||  inputText.length () == 0)  {
             mCursor = database.query(DatabaseBehaviorHelper.TABLE_NAME, new String[] {DatabaseBehaviorHelper._ID,
