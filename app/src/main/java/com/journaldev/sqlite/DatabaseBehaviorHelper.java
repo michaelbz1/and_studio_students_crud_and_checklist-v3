@@ -56,7 +56,7 @@ public class DatabaseBehaviorHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                //Id, Company,Name,Price
+                //Id,Name,Date
                 HashMap<String, String> map = new HashMap<String, String>();
                 map.put("a", cursor.getString(0));
                 map.put("b", cursor.getString(1));
@@ -66,6 +66,7 @@ public class DatabaseBehaviorHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return journalList;
+
     }
     public Cursor fetchCountriesByName(String inputText) throws SQLException {
         //Log.w(TAG, inputText);

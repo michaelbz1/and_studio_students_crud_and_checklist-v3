@@ -102,10 +102,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_signin:
-                Intent intent = new Intent(this, SigninActivity.class);
-                startActivityForResult(intent, SIGNIN_REQUEST);
+
+            case R.id.action_students:
+                Intent intent = new Intent(this, StudentListActivity.class);
+                startActivity(intent);
                 return true;
+            //case R.id.action_students:
+            //    Intent intent = new Intent(this, SigninActivity.class);
+            //    startActivityForResult(intent, SIGNIN_REQUEST);
+            //    return true;
             case R.id.action_settings:
                 // Show the settings screen
                 Intent settingsIntent = new Intent(this, PrefsActivity.class);

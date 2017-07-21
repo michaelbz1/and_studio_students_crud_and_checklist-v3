@@ -5,27 +5,23 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.ActionBarActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class StudentListActivity extends ActionBarActivity {
 
-    private DBManager dbManager;
+    private DBStudentManager dbManager;
 
     private ListView listView;
 
     private SimpleCursorAdapter adapter;
 
-    final String[] from = new String[] { DatabaseHelper._ID,
-            DatabaseHelper.STUDENTID, DatabaseHelper.STUDENTNAME, DatabaseHelper.STUDENTPER };
+    final String[] from = new String[] { DatabaseStudentHelper._ID,
+            DatabaseStudentHelper.STUDENTID, DatabaseStudentHelper.STUDENTNAME, DatabaseStudentHelper.STUDENTPER };
 
     final int[] to = new int[] { R.id.id, R.id.studentid, R.id.studentname, R.id.studentper };
 
@@ -35,7 +31,7 @@ public class StudentListActivity extends ActionBarActivity {
 
         setContentView(R.layout.fragment_emp_list);
 
-        dbManager = new DBManager(this);
+        dbManager = new DBStudentManager(this);
         dbManager.open();
         Cursor cursor = dbManager.fetch();
 

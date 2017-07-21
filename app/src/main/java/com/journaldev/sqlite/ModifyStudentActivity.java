@@ -17,7 +17,7 @@ public class ModifyStudentActivity extends Activity implements OnClickListener {
 
     private long _id;
 
-    private DBManager dbManager;
+    private DBStudentManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class ModifyStudentActivity extends Activity implements OnClickListener {
 
         setContentView(R.layout.activity_modify_record);
 
-        dbManager = new DBManager(this);
+        dbManager = new DBStudentManager(this);
         dbManager.open();
 
         studentidText = (EditText) findViewById(R.id.studentid_edittext);

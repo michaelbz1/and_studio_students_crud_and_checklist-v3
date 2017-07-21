@@ -18,7 +18,7 @@ public class AddStudentActivity extends Activity implements OnClickListener {
     private EditText studentnameEditText;
     private EditText studentperEditText;
 
-    private DBManager dbManager;
+    private DBStudentManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class AddStudentActivity extends Activity implements OnClickListener {
 
         addTodoBtn = (Button) findViewById(R.id.add_record);
 
-        dbManager = new DBManager(this);
+        dbManager = new DBStudentManager(this);
         dbManager.open();
         addTodoBtn.setOnClickListener(this);
     }

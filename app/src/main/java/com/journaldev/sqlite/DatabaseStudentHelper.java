@@ -13,7 +13,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseStudentHelper extends SQLiteOpenHelper {
 
     // Table Name
     public static final String TABLE_NAME = "STUDENTS";
@@ -34,7 +34,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + _ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT, " + STUDENTID + " TEXT NOT NULL, " + STUDENTNAME + " TEXT NOT NULL, " + STUDENTPER + " TEXT NOT NULL);";
 
-    public DatabaseHelper(Context context) {
+    public DatabaseStudentHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -75,15 +75,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor mCursor = null;
         if (inputText == null  ||  inputText.length () == 0)  {
-            mCursor = database.query(DatabaseHelper.TABLE_NAME, new String[] {DatabaseHelper._ID,
-                            DatabaseHelper.STUDENTID, DatabaseHelper.STUDENTNAME, DatabaseHelper.STUDENTPER},
+            mCursor = database.query(DatabaseStudentHelper.TABLE_NAME, new String[] {DatabaseStudentHelper._ID,
+                            DatabaseStudentHelper.STUDENTID, DatabaseStudentHelper.STUDENTNAME, DatabaseStudentHelper.STUDENTPER},
                     null, null, null, null, null);
 
         }
         else {
-            mCursor = database.query(true, DatabaseHelper.TABLE_NAME, new String[] {DatabaseHelper._ID,
-                            DatabaseHelper.STUDENTID, DatabaseHelper.STUDENTNAME, DatabaseHelper.STUDENTPER},
-                    DatabaseHelper.STUDENTPER + " like '%" + inputText + "%'", null,
+            mCursor = database.query(true, DatabaseStudentHelper.TABLE_NAME, new String[] {DatabaseStudentHelper._ID,
+                            DatabaseStudentHelper.STUDENTID, DatabaseStudentHelper.STUDENTNAME, DatabaseStudentHelper.STUDENTPER},
+                    DatabaseStudentHelper.STUDENTPER + " like '%" + inputText + "%'", null,
                     null, null, null, null);
         }
         if (mCursor != null) {
