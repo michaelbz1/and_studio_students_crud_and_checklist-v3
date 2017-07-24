@@ -108,10 +108,13 @@ public class ImportMainActivity extends ListActivity {
 
                                 String[] str = line.split(",", 3);  // defining 3 columns with null or blank field //values acceptance
                                 //Id, Company,Name,Price
+                                final String itemId = UUID.randomUUID().toString();
+                                String id = str[0].toString();
                                 String name = str[0].toString();
                                 String issn = str[1].toString();
                                 String imp = str[2].toString();
                                 Log.e("data123456", name);
+                                contentValues.put("_ID", itemId);
                                 contentValues.put("StudentID", name);
                                 contentValues.put("StudentName", issn);
                                 contentValues.put("StudentPeriod", imp);

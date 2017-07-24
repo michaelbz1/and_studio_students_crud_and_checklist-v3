@@ -23,7 +23,8 @@
         android:maxLines="1"
         android:padding="3dp"
         android:textSize="17sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone"/>
 <!-- studentper is really student date-->
     <TextView
         android:id="@+id/studentper"

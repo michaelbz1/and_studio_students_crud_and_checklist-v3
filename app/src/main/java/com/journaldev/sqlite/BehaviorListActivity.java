@@ -56,8 +56,8 @@ public class BehaviorListActivity extends AppCompatActivity {
         Cursor cursor = dbManager.fetchCountriesByName(itemId);
 
 
-        Toast.makeText(this, "(BehaviorListActivity)You selected " + itemId + " " + itemName,
-                Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "(BehaviorListActivity)You selected " + itemId + " " + itemName,
+//                Toast.LENGTH_SHORT).show();
 
         textView = (TextView) findViewById(R.id.textView);
         String studentname = itemName;
@@ -147,8 +147,8 @@ public class BehaviorListActivity extends AppCompatActivity {
         if (id == R.id.add_record) {
 
             Intent add_mem = new Intent(this, AddBehaviorActivity.class);
-            Toast.makeText(this, "You selected " + itemId,
-                    Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "You selected " + itemId,
+//                    Toast.LENGTH_SHORT).show();
             add_mem.putExtra("item_id", itemId);
             add_mem.putExtra("item_name", itemName);
             //this is the one for add.  See above for modify

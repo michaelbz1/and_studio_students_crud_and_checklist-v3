@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:ems="10"
-        android:hint="@string/enter_studentid" />
+        android:hint="@string/enter_studentid"
+        android:visibility="gone"/>
 
     <EditText
         android:id="@+id/studentper_edittext"

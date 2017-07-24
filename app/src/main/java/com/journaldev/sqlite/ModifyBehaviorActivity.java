@@ -46,8 +46,8 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
         //This messed with me for TOO LONG!  DataItemAdapter  ITEM_ID = "item_id" and thats whats needed
         itemId =  bundle.getString("item_id");
         itemName =  bundle.getString("item_name");
-        Toast.makeText(this, "Sent " + itemId + " " + itemName,
-                Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Sent " + itemId + " " + itemName,
+        //        Toast.LENGTH_SHORT).show();
 
         setTitle("Modify Record");
 
@@ -167,9 +167,7 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);
-        Toast.makeText(getApplicationContext(), "ca",
-                Toast.LENGTH_SHORT)
-                .show();
+        //Toast.makeText(getApplicationContext(), "ca", Toast.LENGTH_SHORT).show();
     }
 
     @Override
