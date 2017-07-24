@@ -27,9 +27,10 @@ public class BehaviorListActivity extends AppCompatActivity {
     private SimpleCursorAdapter adapter;
 
     final String[] from = new String[] { DatabaseBehaviorHelper._ID,
-            DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE };
+            DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE,
+            DatabaseBehaviorHelper.BEHAVIORCONSEQUENCE, DatabaseBehaviorHelper.BEHAVIORPARENTCONTACT, DatabaseBehaviorHelper.BEHAVIORCOMMENTS };
 
-    final int[] to = new int[] { R.id.id, R.id.studentid, R.id.studentname, R.id.studentper };
+    final int[] to = new int[] { R.id.id, R.id.studentid, R.id.studentname, R.id.studentper, R.id.studentcons, R.id.studentparentcontact, R.id.studentcomment };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +41,6 @@ public class BehaviorListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.fragment_behavior_list);
-
-
 
         Intent intent = getIntent();
         Bundle bundle =  intent.getExtras();
@@ -57,7 +56,7 @@ public class BehaviorListActivity extends AppCompatActivity {
         Cursor cursor = dbManager.fetchCountriesByName(itemId);
 
 
-        Toast.makeText(this, "You selected " + itemId + " " + itemName,
+        Toast.makeText(this, "(BehaviorListActivity)You selected " + itemId + " " + itemName,
                 Toast.LENGTH_SHORT).show();
 
         textView = (TextView) findViewById(R.id.textView);
@@ -81,16 +80,25 @@ public class BehaviorListActivity extends AppCompatActivity {
                 TextView studentidTextView = (TextView) view.findViewById(R.id.studentid);
                 TextView studentnameTextView = (TextView) view.findViewById(R.id.studentname);
                 TextView studentperTextView = (TextView) view.findViewById(R.id.studentper);
+                TextView studentConsTextView = (TextView) view.findViewById(R.id.studentcons);
+                TextView studentParentContactTextView = (TextView) view.findViewById(R.id.studentparentcontact);
+                TextView studentCommentTextView = (TextView) view.findViewById(R.id.studentcomment);
 
                 String id = idTextView.getText().toString();
                 String studentid = studentidTextView.getText().toString();
                 String studentname = studentnameTextView.getText().toString();
                 String studentper = studentperTextView.getText().toString();
+                String studentCons = studentConsTextView.getText().toString();
+                String studentParentContact = studentParentContactTextView.getText().toString();
+                String studentComment = studentCommentTextView.getText().toString();
 
                 Intent modify_intent = new Intent(getApplicationContext(), ModifyBehaviorActivity.class);
                 modify_intent.putExtra("studentid", studentid);
                 modify_intent.putExtra("studentname", studentname);
                 modify_intent.putExtra("studentper", studentper);
+                modify_intent.putExtra("studentcons", studentCons);
+                modify_intent.putExtra("studentParentContact", studentParentContact);
+                modify_intent.putExtra("studentComment", studentComment);
                 modify_intent.putExtra("id", id);
 
                 modify_intent.putExtra("item_id", itemId);

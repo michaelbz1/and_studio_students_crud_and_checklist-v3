@@ -11,6 +11,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.UUID;
+
 public class AddStudentActivity extends Activity implements OnClickListener {
 
     private Button addTodoBtn;
@@ -43,12 +45,12 @@ public class AddStudentActivity extends Activity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_record:
-
+                final String itemId = UUID.randomUUID().toString();
                 final String studentid = studentidEditText.getText().toString();
                 final String studentname = studentnameEditText.getText().toString();
                 final String studentper = studentperEditText.getText().toString();
 
-                dbManager.insert(studentid, studentname, studentper);
+                dbManager.insert(itemId, studentid, studentname, studentper);
 
                 Intent main = new Intent(AddStudentActivity.this, StudentListActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

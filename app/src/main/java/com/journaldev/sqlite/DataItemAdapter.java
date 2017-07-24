@@ -63,7 +63,8 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
     public void onBindViewHolder(DataItemAdapter.ViewHolder holder, int position) {
         final DataItem item = mItems.get(position);
         holder.tvName.setText(item.getItemName());
-
+//        Toast.makeText(mContext, "(setOnClickListener)You selected " + item,
+//                Toast.LENGTH_SHORT).show();
 //        try {
 //            holder.tvName.setText(item.getItemName());
 //            String imageFile = item.getImage();
@@ -77,11 +78,9 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(mContext, "You selected " + item.getItemName(),
+                String itemId = item.getItemId();
+//                Toast.makeText(mContext, "(setOnClickListener)You selected " + itemId,
 //                        Toast.LENGTH_SHORT).show();
-//                String itemId = item.getItemId();
-
-//                Intent intent = new Intent(mContext, DetailActivity.class);
 
                 Intent intent = new Intent(mContext, BehaviorListActivity.class);
                 intent.putExtra(ITEM_KEY, item);
@@ -95,7 +94,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
             @Override
             public boolean onLongClick(View v) {
 //                Toast.makeText(mContext, "You long clicked " + item.getItemName(),
-                Toast.makeText(mContext, "You long clicked " + item.getItemId(),
+                Toast.makeText(mContext, "(DataItemAdapter) You long clicked " + item.getItemId(),
                         Toast.LENGTH_SHORT).show();
                 return false;
             }

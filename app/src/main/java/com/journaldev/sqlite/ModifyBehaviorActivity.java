@@ -27,6 +27,7 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
     private TextView studentnameText;
     private EditText studentperText;
     private Button updateBtn, deleteBtn;
+    private EditText behaviorCommentEditText;
 
     private long _id;
 
@@ -77,9 +78,22 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
         Spinner spinner=(Spinner) findViewById(R.id.studentname_edittext);
         spinner.setSelection(getIndex(spinner, name));
 
+        String consequence = intent.getStringExtra("studentcons");
+        Spinner spinnerCons=(Spinner) findViewById(R.id.spinner_consequence);
+        spinner.setSelection(getIndex(spinnerCons, consequence));
 
+        String parent_contact = intent.getStringExtra("studentParentContact");
+        Spinner spinnerParentContact=(Spinner) findViewById(R.id.spinner_parent_contact);
+        spinner.setSelection(getIndex(spinnerParentContact, parent_contact));
+
+        EditText behaviorCommentEditText = (EditText) findViewById(R.id.comments);
+        String comment = intent.getStringExtra("studentComment");
+//        if (comment == null) {
+//            comment = " ";
+//        }
         String period = intent.getStringExtra("studentper");
         //studentperText = (EditText) findViewById(R.id.studentper_edittext);
+
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
 
@@ -93,6 +107,7 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
         studentidText.setText(itemId);
         //studentnameText.setText(name);
         studentperText.setText(period);
+        behaviorCommentEditText.setText(comment);
 
         updateBtn.setOnClickListener(this);
         deleteBtn.setOnClickListener(this);
@@ -119,9 +134,18 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
                 Spinner mySpinner=(Spinner) findViewById(R.id.studentname_edittext);
                 String studentname = mySpinner.getSelectedItem().toString();
 
+                Spinner spinnerCons=(Spinner) findViewById(R.id.spinner_consequence);
+                String studentcons = spinnerCons.getSelectedItem().toString();
+
+                Spinner spinnerParentContact=(Spinner) findViewById(R.id.spinner_parent_contact);
+                String studentParentContact = spinnerParentContact.getSelectedItem().toString();
+
+                EditText behaviorCommentEditText = (EditText) findViewById(R.id.comments);
+                String studentComment = behaviorCommentEditText.getText().toString();
+
                 String studentper = studentperText.getText().toString();
 
-                dbManager.update(_id, studentid, studentname, studentper);
+                dbManager.update(_id, studentid, studentname, studentper, studentcons, studentParentContact, studentComment);
 
                 this.returnHome();
                 break;

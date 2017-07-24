@@ -27,6 +27,9 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
     private EditText behavioridEditText;
     private EditText behaviorNameEditText;
     private EditText behaviorDateEditText;
+    private EditText behaviorConsEditText;
+    private EditText behaviorParentContactEditText;
+    private EditText behaviorCommentEditText;
 
     private DBBehaviorManager dbManager;
 
@@ -58,6 +61,9 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
 
         //behaviorDateEditText = (EditText) findViewById(R.id.behaviordate_edittext);
         behaviorDateEditText = (EditText) findViewById(R.id.behaviordate_edittext);
+
+        behaviorCommentEditText = (EditText) findViewById(R.id.et_comments);
+
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
 
@@ -82,7 +88,15 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
                 //final String studentname = behaviorNameEditText.getText().toString();
                 final String studentper = behaviorDateEditText.getText().toString();
 
-                dbManager.insert(studentid, studentname, studentper);
+                Spinner myconsSpinner=(Spinner) findViewById(R.id.spinner_consequence);
+                String studentcons = myconsSpinner.getSelectedItem().toString();
+
+                Spinner myParentContactSpinner=(Spinner) findViewById(R.id.spinner_parent_contact);
+                String studentParentContact = myParentContactSpinner.getSelectedItem().toString();
+                //final String studentname = behaviorNameEditText.getText().toString();
+                final String studentComment = behaviorCommentEditText.getText().toString();
+
+                dbManager.insert(studentid, studentname, studentper, studentcons, studentParentContact, studentComment);
 
                 Intent main = new Intent(AddBehaviorActivity.this, BehaviorListActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

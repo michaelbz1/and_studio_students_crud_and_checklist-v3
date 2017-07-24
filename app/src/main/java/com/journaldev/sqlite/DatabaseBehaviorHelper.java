@@ -19,17 +19,21 @@ public class DatabaseBehaviorHelper extends SQLiteOpenHelper {
     public static final String _ID = "_id";
     public static final String BEHAVIORID = "BEHAVIORID";
     public static final String BEHAVIORNAME = "BEHAVIORNAME";
-    public static final String BEHAVIORDATE = "BEHAVIORDATEiod";
+    public static final String BEHAVIORDATE = "BEHAVIORDATE";
+    public static final String BEHAVIORCONSEQUENCE = "BEHAVIORCONSEQUENCE";
+    public static final String BEHAVIORPARENTCONTACT = "BEHAVIORPARENTCONTACT";
+    public static final String BEHAVIORCOMMENTS = "BEHAVIORCOMMENTS";
 
     // Database Information
     static final String DB_NAME = "BehaviorDB.DB";
 
     // database version
-    static final int DB_VERSION = 6;
+    static final int DB_VERSION = 7;
 
     // Creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + _ID
-            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + BEHAVIORID + " TEXT NOT NULL, " + BEHAVIORNAME + " TEXT NOT NULL, " + BEHAVIORDATE + " TEXT NOT NULL);";
+            + " INTEGER PRIMARY KEY AUTOINCREMENT, " + BEHAVIORID + " TEXT NOT NULL, " + BEHAVIORNAME + " TEXT NOT NULL, " + BEHAVIORDATE
+            + " TEXT NOT NULL, " + BEHAVIORCONSEQUENCE + " TEXT NOT NULL, " + BEHAVIORPARENTCONTACT + " TEXT NOT NULL, " + BEHAVIORCOMMENTS + " TEXT NOT NULL);";
 
     public DatabaseBehaviorHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -61,6 +65,9 @@ public class DatabaseBehaviorHelper extends SQLiteOpenHelper {
                 map.put("a", cursor.getString(0));
                 map.put("b", cursor.getString(1));
                 map.put("c", cursor.getString(2));
+                map.put("d", cursor.getString(3)); //new
+                map.put("e", cursor.getString(4)); //new
+                map.put("f", cursor.getString(5)); //new
                 journalList.add(map);
                 Log.e("dataofList", cursor.getString(0) + "," + cursor.getString(1) + "," + cursor.getString(2));
             } while (cursor.moveToNext());
@@ -74,13 +81,15 @@ public class DatabaseBehaviorHelper extends SQLiteOpenHelper {
         Cursor mCursor = null;
         if (inputText == null  ||  inputText.length () == 0)  {
             mCursor = database.query(DatabaseBehaviorHelper.TABLE_NAME, new String[] {DatabaseBehaviorHelper._ID,
-                            DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE},
+                            DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE,
+                            DatabaseBehaviorHelper.BEHAVIORCONSEQUENCE, DatabaseBehaviorHelper.BEHAVIORPARENTCONTACT, DatabaseBehaviorHelper.BEHAVIORCOMMENTS},
                     null, null, null, null, null);
 
         }
         else {
             mCursor = database.query(true, DatabaseBehaviorHelper.TABLE_NAME, new String[] {DatabaseBehaviorHelper._ID,
-                            DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE},
+                            DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE,
+                            DatabaseBehaviorHelper.BEHAVIORCONSEQUENCE, DatabaseBehaviorHelper.BEHAVIORPARENTCONTACT, DatabaseBehaviorHelper.BEHAVIORCOMMENTS},
                     DatabaseBehaviorHelper.BEHAVIORDATE + " like '%" + inputText + "%'", null,
                     null, null, null, null);
         }

@@ -33,8 +33,9 @@ public class DBStudentManager {
         dbHelper.close();
     }
 
-    public void insert(String student_id, String student_name, String student_per) {
+    public void insert(String itemId, String student_id, String student_name, String student_per) {
         ContentValues contentValue = new ContentValues();
+        contentValue.put(DatabaseStudentHelper._ID, itemId);
         contentValue.put(DatabaseStudentHelper.STUDENTID, student_id);
         contentValue.put(DatabaseStudentHelper.STUDENTNAME, student_name);
         contentValue.put(DatabaseStudentHelper.STUDENTPER, student_per);
@@ -59,17 +60,17 @@ public class DBStudentManager {
         }
         return cursor;
     }
-    public int update(long _id, String student_id, String student_name, String student_per) {
+    public int update(String _id, String student_id, String student_name, String student_per) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseStudentHelper.STUDENTID, student_id);
         contentValues.put(DatabaseStudentHelper.STUDENTNAME, student_name);
         contentValues.put(DatabaseStudentHelper.STUDENTPER, student_per);
-        int i = database.update(DatabaseStudentHelper.TABLE_NAME, contentValues, DatabaseStudentHelper._ID + " = " + _id, null);
+        int i = database.update(DatabaseStudentHelper.TABLE_NAME, contentValues, DatabaseStudentHelper._ID + " = '" + _id + "'", null);
         return i;
     }
 
-    public void delete(long _id) {
-        database.delete(DatabaseStudentHelper.TABLE_NAME, DatabaseStudentHelper._ID + "=" + _id, null);
+    public void delete(String _id) {
+        database.delete(DatabaseStudentHelper.TABLE_NAME, DatabaseStudentHelper._ID + "='" + _id + "'", null);
     }
 
     public Cursor fetchCountriesByName(String inputText) throws SQLException {

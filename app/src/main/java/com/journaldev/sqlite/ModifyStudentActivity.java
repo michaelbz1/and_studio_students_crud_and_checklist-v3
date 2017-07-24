@@ -15,7 +15,7 @@ public class ModifyStudentActivity extends Activity implements OnClickListener {
     private EditText studentperText;
     private Button updateBtn, deleteBtn;
 
-    private long _id;
+    private String _id;
 
     private DBStudentManager dbManager;
 
@@ -43,7 +43,8 @@ public class ModifyStudentActivity extends Activity implements OnClickListener {
         String name = intent.getStringExtra("studentname");
         String period = intent.getStringExtra("studentper");
 
-        _id = Long.parseLong(id);
+        //_id = Long.parseLong(id);
+        _id = id;  //changed this because it was giving an error 'invalid long: "4545345345343-345-345345-"
 
         studentidText.setText(studentid);
         studentnameText.setText(name);

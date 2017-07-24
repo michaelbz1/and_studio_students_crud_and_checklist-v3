@@ -20,10 +20,20 @@ public class StudentListActivity extends ActionBarActivity {
 
     private SimpleCursorAdapter adapter;
 
-    final String[] from = new String[] { DatabaseStudentHelper._ID,
-            DatabaseStudentHelper.STUDENTID, DatabaseStudentHelper.STUDENTNAME, DatabaseStudentHelper.STUDENTPER };
+    final String[] from = new String[] { DatabaseStudentHelper._ID, DatabaseStudentHelper.STUDENTID, DatabaseStudentHelper.STUDENTNAME, DatabaseStudentHelper.STUDENTPER };
 
     final int[] to = new int[] { R.id.id, R.id.studentid, R.id.studentname, R.id.studentper };
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        dbManager = new DBStudentManager(this);
+        dbManager.open();
+        Cursor cursor = dbManager.fetch();
+        adapter = new SimpleCursorAdapter(this, R.layout.activity_view_record, cursor, from, to, 0);
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +74,10 @@ public class StudentListActivity extends ActionBarActivity {
                 modify_intent.putExtra("id", id);
 
                 startActivity(modify_intent);
+                adapter.notifyDataSetChanged();
             }
         });
-
-
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -3,6 +3,7 @@ package com.journaldev.sqlite.model;
 import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.Toast;
 
 import com.journaldev.sqlite.database.ItemsTable;
 
@@ -23,6 +24,7 @@ public class DataItem implements Parcelable {
 
     public DataItem(String itemId, String itemName, String category, String description, int sortPosition, double price, String image) {
 
+
         if (itemId == null) {
             itemId = UUID.randomUUID().toString();
         }
@@ -34,6 +36,7 @@ public class DataItem implements Parcelable {
         this.sortPosition = sortPosition;
 //        this.price = price;
 //       this.image = image;
+
     }
 
     public String getItemId() {
