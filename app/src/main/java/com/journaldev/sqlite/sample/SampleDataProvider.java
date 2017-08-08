@@ -15,12 +15,8 @@ public class SampleDataProvider {
         dataItemList = new ArrayList<>();
         dataItemMap = new HashMap<>();
 
-    //FROM DataItem.java ******   public DataItem(String itemId, String itemName, String category, String description, int sortPosition, double price, String image) {
-        addItem(new DataItem(null, "Chef's Salad", "Salads",
-                "The chef’s salad has cucumber, tomatoes, red onions, mushrooms, dressing.",
-                2, 9, "chef_salad.jpg"));
-
-
+    //FROM DataItem.java ******   public DataItem(String itemId, String Name(firstandlastname), String category(period), String description(notused), int sortPosition(studentid), double price(notused), String image) {
+        addItem(new DataItem(null, "Jack Frost", "1", "", 12345678, 9, "apple_pie.jpg"));
     }
 
     private static void addItem(DataItem item) {

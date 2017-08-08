@@ -101,6 +101,7 @@ public class BehaviorListActivity extends AppCompatActivity {
                 modify_intent.putExtra("studentComment", studentComment);
                 modify_intent.putExtra("id", id);
 
+
                 modify_intent.putExtra("item_id", itemId);
                 modify_intent.putExtra("item_name", itemName);
                 startActivity(modify_intent);

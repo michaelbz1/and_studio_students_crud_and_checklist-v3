@@ -79,12 +79,13 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
         spinner.setSelection(getIndex(spinner, name));
 
         String consequence = intent.getStringExtra("studentcons");
+        Toast.makeText(this, consequence, Toast.LENGTH_SHORT).show();
         Spinner spinnerCons=(Spinner) findViewById(R.id.spinner_consequence);
-        spinner.setSelection(getIndex(spinnerCons, consequence));
+        spinnerCons.setSelection(getIndex(spinnerCons, consequence));
 
         String parent_contact = intent.getStringExtra("studentParentContact");
         Spinner spinnerParentContact=(Spinner) findViewById(R.id.spinner_parent_contact);
-        spinner.setSelection(getIndex(spinnerParentContact, parent_contact));
+        spinnerParentContact.setSelection(getIndex(spinnerParentContact, parent_contact));
 
         EditText behaviorCommentEditText = (EditText) findViewById(R.id.comments);
         String comment = intent.getStringExtra("studentComment");
