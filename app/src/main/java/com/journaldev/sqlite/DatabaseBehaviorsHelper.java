@@ -2,7 +2,6 @@ package com.journaldev.sqlite;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -11,10 +10,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class DatabaseConsequenceHelper extends SQLiteOpenHelper {
+public class DatabaseBehaviorsHelper extends SQLiteOpenHelper {
 
     // Table Name
-    public static final String TABLE_NAME = "CONSEQUENCES";
+    public static final String TABLE_NAME = "BEHAVIORS";
 
     // Table columns
     public static final String _ID = "_id";
@@ -22,7 +21,7 @@ public class DatabaseConsequenceHelper extends SQLiteOpenHelper {
     public static final String CONSEQUENCESORT = "BEHAVIORDATE";
 
     // Database Information
-    static final String DB_NAME = "ConsequencesDB.DB";
+    static final String DB_NAME = "BehaviorsDB.DB";
 
     // database version
     static final int DB_VERSION = 1;
@@ -31,7 +30,7 @@ public class DatabaseConsequenceHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + _ID
             + " INTEGER PRIMARY KEY AUTOINCREMENT, " + CONSEQUENCENAME + " TEXT NOT NULL, " + CONSEQUENCESORT + " TEXT NOT NULL);";
 
-    public DatabaseConsequenceHelper(Context context) {
+    public DatabaseBehaviorsHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -50,7 +49,7 @@ public class DatabaseConsequenceHelper extends SQLiteOpenHelper {
 
         ArrayList<HashMap<String, String>> consequenceList;
         consequenceList = new ArrayList<HashMap<String, String>>();
-        String selectQuery = "SELECT  * FROM CONSEQUENCES";
+        String selectQuery = "SELECT  * FROM BEHAVIORS";
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
 

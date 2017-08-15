@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class DBIncidentManager {
 
-    private static final String TAG = "BehaviorDbAdapter";
+    private static final String TAG = "IncidentDbAdapter";
     private databaseIncidentHelper dbHelper;
 
     private Context context;

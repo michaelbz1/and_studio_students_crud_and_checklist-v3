@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class databaseIncidentHelper extends SQLiteOpenHelper {
 
     // Table Name
-    public static final String TABLE_NAME = "BEHAVIORS";
+    public static final String TABLE_NAME = "INCIDENTS";
 
     // Table columns
     public static final String _ID = "_id";
@@ -25,10 +25,10 @@ public class databaseIncidentHelper extends SQLiteOpenHelper {
     public static final String BEHAVIORCOMMENTS = "BEHAVIORCOMMENTS";
 
     // Database Information
-    static final String DB_NAME = "BehaviorDB.DB";
+    static final String DB_NAME = "IncidentsDB.DB";
 
     // database version
-    static final int DB_VERSION = 8;
+    static final int DB_VERSION = 1;
 
     // Creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" + _ID
@@ -54,7 +54,7 @@ public class databaseIncidentHelper extends SQLiteOpenHelper {
 
         ArrayList<HashMap<String, String>> journalList;
         journalList = new ArrayList<HashMap<String, String>>();
-        String selectQuery = "SELECT  * FROM BEHAVIORS";
+        String selectQuery = "SELECT  * FROM INCIDENTS";
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(selectQuery, null);
 

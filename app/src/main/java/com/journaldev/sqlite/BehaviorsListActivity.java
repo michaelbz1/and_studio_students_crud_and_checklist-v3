@@ -13,9 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class IncidentListActivity extends AppCompatActivity {
+public class BehaviorsListActivity extends AppCompatActivity {
 
-    private DBIncidentManager dbManager;
+    private DBBehaviorsManager dbManager;
 
     private ListView listView;
     private TextView textView;
@@ -24,11 +24,10 @@ public class IncidentListActivity extends AppCompatActivity {
 
     private SimpleCursorAdapter adapter;
 
-    final String[] from = new String[] { databaseIncidentHelper._ID,
-            databaseIncidentHelper.BEHAVIORID, databaseIncidentHelper.BEHAVIORNAME, databaseIncidentHelper.BEHAVIORDATE,
-            databaseIncidentHelper.BEHAVIORCONSEQUENCE, databaseIncidentHelper.BEHAVIORPARENTCONTACT, databaseIncidentHelper.BEHAVIORCOMMENTS };
+    final String[] from = new String[] { DatabaseBehaviorsHelper._ID,
+            DatabaseBehaviorsHelper.CONSEQUENCENAME, DatabaseBehaviorsHelper.CONSEQUENCESORT };
 
-    final int[] to = new int[] { R.id.id, R.id.studentid, R.id.studentname, R.id.studentper, R.id.studentcons, R.id.studentparentcontact, R.id.studentcomment };
+    final int[] to = new int[] { R.id.id, R.id.consequence_name_textview, R.id.consequence_sort_textview };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class IncidentListActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.fragment_incident_list);
+        setContentView(R.layout.fragment_behaviors_list);
 
         Intent intent = getIntent();
         Bundle bundle =  intent.getExtras();
@@ -48,10 +47,10 @@ public class IncidentListActivity extends AppCompatActivity {
             itemName = bundle.getString("item_name");
         }
 
-        dbManager = new DBIncidentManager(this);
+        dbManager = new DBBehaviorsManager(this);
         dbManager.open();
-        //Cursor cursor = dbManager.fetch();
-        Cursor cursor = dbManager.fetchCountriesByName(itemId);
+        Cursor cursor = dbManager.fetch();
+        //Cursor cursor = dbManager.fetchCountriesByName(itemId);
 
 
 //        Toast.makeText(this, "(IncidentListActivity)You selected " + itemId + " " + itemName,
@@ -65,7 +64,7 @@ public class IncidentListActivity extends AppCompatActivity {
         listView.setEmptyView(findViewById(R.id.empty));
 
         //adapter = new SimpleCursorAdapter(this, R.layout.behavior_view_record, cursor, from, to, 0);
-        adapter = new SimpleCursorAdapter(this, R.layout.incident_view_record, cursor, from, to, 0);
+        adapter = new SimpleCursorAdapter(this, R.layout.behaviors_view_record, cursor, from, to, 0);
         adapter.notifyDataSetChanged();
 
         listView.setAdapter(adapter);
@@ -75,33 +74,21 @@ public class IncidentListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
                 TextView idTextView = (TextView) view.findViewById(R.id.id);
-                TextView studentidTextView = (TextView) view.findViewById(R.id.studentid);
-                TextView studentnameTextView = (TextView) view.findViewById(R.id.studentname);
-                TextView studentperTextView = (TextView) view.findViewById(R.id.studentper);
-                TextView studentConsTextView = (TextView) view.findViewById(R.id.studentcons);
-                TextView studentParentContactTextView = (TextView) view.findViewById(R.id.studentparentcontact);
-                TextView studentCommentTextView = (TextView) view.findViewById(R.id.studentcomment);
+                TextView studentidTextView = (TextView) view.findViewById(R.id.consequence_name_textview);
+                TextView studentnameTextView = (TextView) view.findViewById(R.id.consequence_sort_textview);
 
                 String id = idTextView.getText().toString();
                 String studentid = studentidTextView.getText().toString();
                 String studentname = studentnameTextView.getText().toString();
-                String studentper = studentperTextView.getText().toString();
-                String studentCons = studentConsTextView.getText().toString();
-                String studentParentContact = studentParentContactTextView.getText().toString();
-                String studentComment = studentCommentTextView.getText().toString();
 
-                Intent modify_intent = new Intent(getApplicationContext(), ModifyIncidentActivity.class);
+                Intent modify_intent = new Intent(getApplicationContext(), ModifyBehaviorsActivity.class);
                 modify_intent.putExtra("studentid", studentid);
                 modify_intent.putExtra("studentname", studentname);
-                modify_intent.putExtra("studentper", studentper);
-                modify_intent.putExtra("studentcons", studentCons);
-                modify_intent.putExtra("studentParentContact", studentParentContact);
-                modify_intent.putExtra("studentComment", studentComment);
                 modify_intent.putExtra("id", id);
 
 
-                modify_intent.putExtra("item_id", itemId);
-                modify_intent.putExtra("item_name", itemName);
+                //modify_intent.putExtra("item_id", itemId);
+                //modify_intent.putExtra("item_name", itemName);
                 startActivity(modify_intent);
             }
         });
@@ -145,7 +132,7 @@ public class IncidentListActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.add_record) {
 
-            Intent add_mem = new Intent(this, AddIncidentActivity.class);
+            Intent add_mem = new Intent(this, AddBehaviorsActivity.class);
 //            Toast.makeText(this, "You selected " + itemId,
 //                    Toast.LENGTH_SHORT).show();
             add_mem.putExtra("item_id", itemId);

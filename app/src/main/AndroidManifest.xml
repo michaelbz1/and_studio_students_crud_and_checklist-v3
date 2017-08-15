@@ -77,6 +77,7 @@
             android:name=".IncidentListActivity"
             android:label="Student Incidents"
             />
+
         <activity android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
             android:name=".ModifyConsequenceActivity"
             />
@@ -88,6 +89,19 @@
         <activity android:theme="@style/AppTheme"
             android:name=".ConsequenceListActivity"
             android:label="Consequences"
+            />
+
+        <activity android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:name=".ModifyBehaviorsActivity"
+            />
+
+        <activity android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:name=".AddBehaviorsActivity"
+            />
+
+        <activity android:theme="@style/AppTheme"
+            android:name=".BehaviorsListActivity"
+            android:label="Behaviors"
             />
 
     </application>

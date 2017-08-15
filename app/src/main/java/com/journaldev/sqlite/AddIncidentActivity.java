@@ -35,6 +35,7 @@ public class AddIncidentActivity extends Activity implements OnClickListener {
     private EditText behaviorCommentEditText;
 
     Spinner myconsSpinner;
+    Spinner myBehaviorsSpinner;
 
     private DBIncidentManager dbManager;
 
@@ -55,7 +56,7 @@ public class AddIncidentActivity extends Activity implements OnClickListener {
         //setTitle("Add Incident Record for " + itemId);
         setTitle("Add Incident Record");
 
-        setContentView(R.layout.activity_add_behavior_record);
+        setContentView(R.layout.activity_add_incident_record);
 
         behavioridEditText = (EditText) findViewById(R.id.behaviorid_edittext);
         behavioridEditText.setText(itemId.toString());
@@ -63,8 +64,10 @@ public class AddIncidentActivity extends Activity implements OnClickListener {
         myconsSpinner=(Spinner) findViewById(R.id.spinner_consequence);
         loadSpinnerData();
 
-        Spinner mySpinner=(Spinner) findViewById(R.id.behaviorname_edittext);
-        String behaviorNameEditText = mySpinner.getSelectedItem().toString();
+        myBehaviorsSpinner=(Spinner) findViewById(R.id.behaviorname_edittext);
+        loadBehaviorsSpinnerData();
+
+        String behaviorNameEditText = myBehaviorsSpinner.getSelectedItem().toString();
         //behaviorNameEditText = (EditText) findViewById(R.id.behaviorname_edittext);
 
         //behaviorDateEditText = (EditText) findViewById(R.id.behaviordate_edittext);
@@ -91,15 +94,17 @@ public class AddIncidentActivity extends Activity implements OnClickListener {
             case R.id.add_record:
 
                 final String studentid = behavioridEditText.getText().toString();
-                Spinner mySpinner=(Spinner) findViewById(R.id.behaviorname_edittext);
-                String studentname = mySpinner.getSelectedItem().toString();
+                Spinner myBehaviorsSpinner=(Spinner) findViewById(R.id.behaviorname_edittext);
+                //loadBehaviorsSpinnerData();
+
+                String studentname = myBehaviorsSpinner.getSelectedItem().toString();
                 //final String studentname = behaviorNameEditText.getText().toString();
                 final String studentper = behaviorDateEditText.getText().toString();
 
                 Spinner myconsSpinner=(Spinner) findViewById(R.id.spinner_consequence);
                 String studentcons = myconsSpinner.getSelectedItem().toString();
 
-                loadSpinnerData();
+                //loadSpinnerData();
 
                 Spinner myParentContactSpinner=(Spinner) findViewById(R.id.spinner_parent_contact);
                 String studentParentContact = myParentContactSpinner.getSelectedItem().toString();
@@ -169,6 +174,19 @@ public class AddIncidentActivity extends Activity implements OnClickListener {
         myconsSpinner.setAdapter(dataAdapter);
     }
 
+    private void loadBehaviorsSpinnerData() {
+        DatabaseBehaviorsHelper db = new DatabaseBehaviorsHelper(getApplicationContext());
+        List<String> behaviors = db.getAllLabels();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, behaviors);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        myBehaviorsSpinner.setAdapter(dataAdapter);
+    }
     //@Override
     public void onItemSelected(AdapterView<?> parent, View view, int position,
                                long id) {

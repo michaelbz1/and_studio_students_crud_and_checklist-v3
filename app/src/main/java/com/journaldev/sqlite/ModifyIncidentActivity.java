@@ -37,6 +37,7 @@ public class ModifyIncidentActivity extends Activity implements OnClickListener 
     public String itemName;
 
     Spinner spinnerCons;
+    Spinner myBehaviorsSpinner;
 
     private DBIncidentManager dbManager;
 
@@ -54,7 +55,7 @@ public class ModifyIncidentActivity extends Activity implements OnClickListener 
 
         setTitle("Modify Incident Record");
 
-        setContentView(R.layout.behavior_modify_record);
+        setContentView(R.layout.incident_modify_record);
 
         dbManager = new DBIncidentManager(this);
         dbManager.open();
@@ -78,11 +79,11 @@ public class ModifyIncidentActivity extends Activity implements OnClickListener 
         //String name = intent.getStringExtra("item_name");
 
         String name = intent.getStringExtra("studentname");
-        Spinner spinner=(Spinner) findViewById(R.id.studentname_edittext);
-        spinner.setSelection(getIndex(spinner, name));
+        myBehaviorsSpinner=(Spinner) findViewById(R.id.studentname_edittext);
+        loadBehaviorsSpinnerData();
+        myBehaviorsSpinner.setSelection(getIndex(myBehaviorsSpinner, name));
 
         String consequence = intent.getStringExtra("studentcons");
-        Toast.makeText(this, consequence, Toast.LENGTH_SHORT).show();
         spinnerCons=(Spinner) findViewById(R.id.spinner_consequence);
         loadSpinnerData();
         spinnerCons.setSelection(getIndex(spinnerCons, consequence));
@@ -215,5 +216,20 @@ public class ModifyIncidentActivity extends Activity implements OnClickListener 
 
         // attaching data adapter to spinner
         spinnerCons.setAdapter(dataAdapter);
+    }
+
+
+    private void loadBehaviorsSpinnerData() {
+        DatabaseBehaviorsHelper db = new DatabaseBehaviorsHelper(getApplicationContext());
+        List<String> behaviors = db.getAllLabels();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, behaviors);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        myBehaviorsSpinner.setAdapter(dataAdapter);
     }
 }
