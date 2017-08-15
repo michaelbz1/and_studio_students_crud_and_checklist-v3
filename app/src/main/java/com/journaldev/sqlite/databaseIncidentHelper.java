@@ -10,7 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class databaseBehaviorHelper extends SQLiteOpenHelper {
+public class databaseIncidentHelper extends SQLiteOpenHelper {
 
     // Table Name
     public static final String TABLE_NAME = "BEHAVIORS";
@@ -35,7 +35,7 @@ public class databaseBehaviorHelper extends SQLiteOpenHelper {
             + " INTEGER PRIMARY KEY AUTOINCREMENT, " + BEHAVIORID + " TEXT NOT NULL, " + BEHAVIORNAME + " TEXT NOT NULL, " + BEHAVIORDATE
             + " TEXT NOT NULL, " + BEHAVIORCONSEQUENCE + " TEXT NOT NULL, " + BEHAVIORPARENTCONTACT + " TEXT NOT NULL, " + BEHAVIORCOMMENTS + " TEXT NOT NULL);";
 
-    public databaseBehaviorHelper(Context context) {
+    public databaseIncidentHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
@@ -80,17 +80,17 @@ public class databaseBehaviorHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor mCursor = null;
         if (inputText == null  ||  inputText.length () == 0)  {
-            mCursor = database.query(databaseBehaviorHelper.TABLE_NAME, new String[] {databaseBehaviorHelper._ID,
-                            databaseBehaviorHelper.BEHAVIORID, databaseBehaviorHelper.BEHAVIORNAME, databaseBehaviorHelper.BEHAVIORDATE,
-                            databaseBehaviorHelper.BEHAVIORCONSEQUENCE, databaseBehaviorHelper.BEHAVIORPARENTCONTACT, databaseBehaviorHelper.BEHAVIORCOMMENTS},
+            mCursor = database.query(databaseIncidentHelper.TABLE_NAME, new String[] {databaseIncidentHelper._ID,
+                            databaseIncidentHelper.BEHAVIORID, databaseIncidentHelper.BEHAVIORNAME, databaseIncidentHelper.BEHAVIORDATE,
+                            databaseIncidentHelper.BEHAVIORCONSEQUENCE, databaseIncidentHelper.BEHAVIORPARENTCONTACT, databaseIncidentHelper.BEHAVIORCOMMENTS},
                     null, null, null, null, null);
 
         }
         else {
-            mCursor = database.query(true, databaseBehaviorHelper.TABLE_NAME, new String[] {databaseBehaviorHelper._ID,
-                            databaseBehaviorHelper.BEHAVIORID, databaseBehaviorHelper.BEHAVIORNAME, databaseBehaviorHelper.BEHAVIORDATE,
-                            databaseBehaviorHelper.BEHAVIORCONSEQUENCE, databaseBehaviorHelper.BEHAVIORPARENTCONTACT, databaseBehaviorHelper.BEHAVIORCOMMENTS},
-                    databaseBehaviorHelper.BEHAVIORDATE + " like '%" + inputText + "%'", null,
+            mCursor = database.query(true, databaseIncidentHelper.TABLE_NAME, new String[] {databaseIncidentHelper._ID,
+                            databaseIncidentHelper.BEHAVIORID, databaseIncidentHelper.BEHAVIORNAME, databaseIncidentHelper.BEHAVIORDATE,
+                            databaseIncidentHelper.BEHAVIORCONSEQUENCE, databaseIncidentHelper.BEHAVIORPARENTCONTACT, databaseIncidentHelper.BEHAVIORCOMMENTS},
+                    databaseIncidentHelper.BEHAVIORDATE + " like '%" + inputText + "%'", null,
                     null, null, null, null);
         }
         if (mCursor != null) {

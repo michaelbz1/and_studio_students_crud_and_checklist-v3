@@ -66,16 +66,16 @@
         </activity>
 
         <activity android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
-            android:name=".ModifyBehaviorActivity"
+            android:name=".ModifyIncidentActivity"
             />
 
         <activity android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
-            android:name=".AddBehaviorActivity"
+            android:name=".AddIncidentActivity"
             />
 
         <activity android:theme="@style/AppTheme"
-            android:name=".BehaviorListActivity"
-            android:label="Student Behaviors"
+            android:name=".IncidentListActivity"
+            android:label="Student Incidents"
             />
         <activity android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
             android:name=".ModifyConsequenceActivity"
@@ -87,7 +87,7 @@
 
         <activity android:theme="@style/AppTheme"
             android:name=".ConsequenceListActivity"
-            android:label="Student Behaviors"
+            android:label="Consequences"
             />
 
     </application>

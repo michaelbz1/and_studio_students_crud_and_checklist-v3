@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.List;
 
-public class ModifyBehaviorActivity extends Activity implements OnClickListener {
+public class ModifyIncidentActivity extends Activity implements OnClickListener {
 
     private DatePicker datePicker;
     private Calendar calendar;
@@ -38,7 +38,7 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
 
     Spinner spinnerCons;
 
-    private DBBehaviorManager dbManager;
+    private DBIncidentManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +52,11 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
         //Toast.makeText(this, "Sent " + itemId + " " + itemName,
         //        Toast.LENGTH_SHORT).show();
 
-        setTitle("Modify Record");
+        setTitle("Modify Incident Record");
 
         setContentView(R.layout.behavior_modify_record);
 
-        dbManager = new DBBehaviorManager(this);
+        dbManager = new DBIncidentManager(this);
         dbManager.open();
 
         studentidText = (EditText) findViewById(R.id.studentid_edittext);
@@ -163,7 +163,7 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
     }
 
     public void returnHome() {
-        Intent home_intent = new Intent(getApplicationContext(), BehaviorListActivity.class)
+        Intent home_intent = new Intent(getApplicationContext(), IncidentListActivity.class)
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         home_intent.putExtra("item_id", itemId);
         home_intent.putExtra("item_name", itemName);

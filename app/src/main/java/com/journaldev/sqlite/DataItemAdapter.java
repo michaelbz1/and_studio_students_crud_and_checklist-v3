@@ -3,7 +3,6 @@ package com.journaldev.sqlite;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,8 +15,6 @@ import android.widget.Toast;
 
 import com.journaldev.sqlite.model.DataItem;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHolder> {
@@ -82,7 +79,7 @@ public class DataItemAdapter extends RecyclerView.Adapter<DataItemAdapter.ViewHo
 //                Toast.makeText(mContext, "(setOnClickListener)You selected " + itemId,
 //                        Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(mContext, BehaviorListActivity.class);
+                Intent intent = new Intent(mContext, IncidentListActivity.class);
                 intent.putExtra(ITEM_KEY, item);
                 intent.putExtra(ITEM_ID, item.getItemId());
                 intent.putExtra(ITEM_NAME, item.getItemName());

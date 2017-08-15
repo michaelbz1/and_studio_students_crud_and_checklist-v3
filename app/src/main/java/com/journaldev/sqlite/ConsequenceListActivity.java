@@ -53,7 +53,7 @@ public class ConsequenceListActivity extends AppCompatActivity {
         //Cursor cursor = dbManager.fetchCountriesByName(itemId);
 
 
-//        Toast.makeText(this, "(BehaviorListActivity)You selected " + itemId + " " + itemName,
+//        Toast.makeText(this, "(IncidentListActivity)You selected " + itemId + " " + itemName,
 //                Toast.LENGTH_SHORT).show();
 
         textView = (TextView) findViewById(R.id.textView);

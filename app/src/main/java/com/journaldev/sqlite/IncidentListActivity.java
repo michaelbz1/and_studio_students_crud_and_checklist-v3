@@ -13,9 +13,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class BehaviorListActivity extends AppCompatActivity {
+public class IncidentListActivity extends AppCompatActivity {
 
-    private DBBehaviorManager dbManager;
+    private DBIncidentManager dbManager;
 
     private ListView listView;
     private TextView textView;
@@ -24,9 +24,9 @@ public class BehaviorListActivity extends AppCompatActivity {
 
     private SimpleCursorAdapter adapter;
 
-    final String[] from = new String[] { databaseBehaviorHelper._ID,
-            databaseBehaviorHelper.BEHAVIORID, databaseBehaviorHelper.BEHAVIORNAME, databaseBehaviorHelper.BEHAVIORDATE,
-            databaseBehaviorHelper.BEHAVIORCONSEQUENCE, databaseBehaviorHelper.BEHAVIORPARENTCONTACT, databaseBehaviorHelper.BEHAVIORCOMMENTS };
+    final String[] from = new String[] { databaseIncidentHelper._ID,
+            databaseIncidentHelper.BEHAVIORID, databaseIncidentHelper.BEHAVIORNAME, databaseIncidentHelper.BEHAVIORDATE,
+            databaseIncidentHelper.BEHAVIORCONSEQUENCE, databaseIncidentHelper.BEHAVIORPARENTCONTACT, databaseIncidentHelper.BEHAVIORCOMMENTS };
 
     final int[] to = new int[] { R.id.id, R.id.studentid, R.id.studentname, R.id.studentper, R.id.studentcons, R.id.studentparentcontact, R.id.studentcomment };
 
@@ -48,13 +48,13 @@ public class BehaviorListActivity extends AppCompatActivity {
             itemName = bundle.getString("item_name");
         }
 
-        dbManager = new DBBehaviorManager(this);
+        dbManager = new DBIncidentManager(this);
         dbManager.open();
         //Cursor cursor = dbManager.fetch();
         Cursor cursor = dbManager.fetchCountriesByName(itemId);
 
 
-//        Toast.makeText(this, "(BehaviorListActivity)You selected " + itemId + " " + itemName,
+//        Toast.makeText(this, "(IncidentListActivity)You selected " + itemId + " " + itemName,
 //                Toast.LENGTH_SHORT).show();
 
         textView = (TextView) findViewById(R.id.textView);
@@ -90,7 +90,7 @@ public class BehaviorListActivity extends AppCompatActivity {
                 String studentParentContact = studentParentContactTextView.getText().toString();
                 String studentComment = studentCommentTextView.getText().toString();
 
-                Intent modify_intent = new Intent(getApplicationContext(), ModifyBehaviorActivity.class);
+                Intent modify_intent = new Intent(getApplicationContext(), ModifyIncidentActivity.class);
                 modify_intent.putExtra("studentid", studentid);
                 modify_intent.putExtra("studentname", studentname);
                 modify_intent.putExtra("studentper", studentper);
@@ -145,7 +145,7 @@ public class BehaviorListActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.add_record) {
 
-            Intent add_mem = new Intent(this, AddBehaviorActivity.class);
+            Intent add_mem = new Intent(this, AddIncidentActivity.class);
 //            Toast.makeText(this, "You selected " + itemId,
 //                    Toast.LENGTH_SHORT).show();
             add_mem.putExtra("item_id", itemId);

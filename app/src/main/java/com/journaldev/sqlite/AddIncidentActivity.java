@@ -20,7 +20,7 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.List;
 
-public class AddBehaviorActivity extends Activity implements OnClickListener {
+public class AddIncidentActivity extends Activity implements OnClickListener {
     private DatePicker datePicker;
     private Calendar calendar;
     private TextView dateView;
@@ -36,7 +36,7 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
 
     Spinner myconsSpinner;
 
-    private DBBehaviorManager dbManager;
+    private DBIncidentManager dbManager;
 
     public String itemId;
     public String itemName;
@@ -52,7 +52,8 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
         itemId =  bundle.getString("item_id");
         itemName =  bundle.getString("item_name");
 
-        setTitle("Add Behavior Record for " + itemId);
+        //setTitle("Add Incident Record for " + itemId);
+        setTitle("Add Incident Record");
 
         setContentView(R.layout.activity_add_behavior_record);
 
@@ -79,7 +80,7 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
         showDate(year, month+1, day);
         addTodoBtn = (Button) findViewById(R.id.add_record);
 
-        dbManager = new DBBehaviorManager(this);
+        dbManager = new DBIncidentManager(this);
         dbManager.open();
         addTodoBtn.setOnClickListener(this);
     }
@@ -107,7 +108,7 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
 
                 dbManager.insert(studentid, studentname, studentper, studentcons, studentParentContact, studentComment);
 
-                Intent main = new Intent(AddBehaviorActivity.this, BehaviorListActivity.class)
+                Intent main = new Intent(AddIncidentActivity.this, IncidentListActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 main.putExtra("item_id", itemId);
                 main.putExtra("item_name", itemName);
