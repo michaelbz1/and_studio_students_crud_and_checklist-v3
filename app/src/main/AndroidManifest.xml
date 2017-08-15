@@ -77,6 +77,18 @@
             android:name=".BehaviorListActivity"
             android:label="Student Behaviors"
             />
+        <activity android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:name=".ModifyConsequenceActivity"
+            />
+
+        <activity android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:name=".AddConsequenceActivity"
+            />
+
+        <activity android:theme="@style/AppTheme"
+            android:name=".ConsequenceListActivity"
+            android:label="Student Behaviors"
+            />
 
     </application>
 

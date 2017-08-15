@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class ModifyBehaviorActivity extends Activity implements OnClickListener {
 
@@ -34,6 +36,7 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
     public String itemId;
     public String itemName;
 
+    Spinner spinnerCons;
 
     private DBBehaviorManager dbManager;
 
@@ -80,7 +83,8 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
 
         String consequence = intent.getStringExtra("studentcons");
         Toast.makeText(this, consequence, Toast.LENGTH_SHORT).show();
-        Spinner spinnerCons=(Spinner) findViewById(R.id.spinner_consequence);
+        spinnerCons=(Spinner) findViewById(R.id.spinner_consequence);
+        loadSpinnerData();
         spinnerCons.setSelection(getIndex(spinnerCons, consequence));
 
         String parent_contact = intent.getStringExtra("studentParentContact");
@@ -197,5 +201,19 @@ public class ModifyBehaviorActivity extends Activity implements OnClickListener 
     private void showDate(int year, int month, int day) {
         studentperText.setText(new StringBuilder().append(month).append("/")
                 .append(day).append("/").append(year));
+    }
+
+    private void loadSpinnerData() {
+        DatabaseConsequenceHelper db = new DatabaseConsequenceHelper(getApplicationContext());
+        List<String> lables = db.getAllLabels();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, lables);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinnerCons.setAdapter(dataAdapter);
     }
 }

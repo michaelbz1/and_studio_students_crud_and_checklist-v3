@@ -5,12 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public class DBBehaviorManager {
 
     private static final String TAG = "BehaviorDbAdapter";
-    private DatabaseBehaviorHelper dbHelper;
+    private databaseBehaviorHelper dbHelper;
 
     private Context context;
 
@@ -21,7 +20,7 @@ public class DBBehaviorManager {
     }
 
     public DBBehaviorManager open() throws SQLException {
-        dbHelper = new DatabaseBehaviorHelper(context);
+        dbHelper = new databaseBehaviorHelper(context);
         database = dbHelper.getWritableDatabase();
         return this;
     }
@@ -32,19 +31,19 @@ public class DBBehaviorManager {
 
     public void insert(String student_id, String student_name, String student_per, String student_cons, String student_parent, String student_comments) {
         ContentValues contentValue = new ContentValues();
-        contentValue.put(DatabaseBehaviorHelper.BEHAVIORID, student_id);
-        contentValue.put(DatabaseBehaviorHelper.BEHAVIORNAME, student_name);
-        contentValue.put(DatabaseBehaviorHelper.BEHAVIORDATE, student_per);
-        contentValue.put(DatabaseBehaviorHelper.BEHAVIORCONSEQUENCE, student_cons);
-        contentValue.put(DatabaseBehaviorHelper.BEHAVIORPARENTCONTACT, student_parent);
-        contentValue.put(DatabaseBehaviorHelper.BEHAVIORCOMMENTS, student_comments);
-        database.insert(DatabaseBehaviorHelper.TABLE_NAME, null, contentValue);
+        contentValue.put(databaseBehaviorHelper.BEHAVIORID, student_id);
+        contentValue.put(databaseBehaviorHelper.BEHAVIORNAME, student_name);
+        contentValue.put(databaseBehaviorHelper.BEHAVIORDATE, student_per);
+        contentValue.put(databaseBehaviorHelper.BEHAVIORCONSEQUENCE, student_cons);
+        contentValue.put(databaseBehaviorHelper.BEHAVIORPARENTCONTACT, student_parent);
+        contentValue.put(databaseBehaviorHelper.BEHAVIORCOMMENTS, student_comments);
+        database.insert(databaseBehaviorHelper.TABLE_NAME, null, contentValue);
     }
 
     public Cursor fetch() {
 
-        String[] columns = new String[] { DatabaseBehaviorHelper._ID, DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE, DatabaseBehaviorHelper.BEHAVIORCONSEQUENCE, DatabaseBehaviorHelper.BEHAVIORPARENTCONTACT, DatabaseBehaviorHelper.BEHAVIORCOMMENTS };
-        Cursor cursor = database.query(DatabaseBehaviorHelper.TABLE_NAME, columns, null, null, null, null, null, null);
+        String[] columns = new String[] { databaseBehaviorHelper._ID, databaseBehaviorHelper.BEHAVIORID, databaseBehaviorHelper.BEHAVIORNAME, databaseBehaviorHelper.BEHAVIORDATE, databaseBehaviorHelper.BEHAVIORCONSEQUENCE, databaseBehaviorHelper.BEHAVIORPARENTCONTACT, databaseBehaviorHelper.BEHAVIORCOMMENTS };
+        Cursor cursor = database.query(databaseBehaviorHelper.TABLE_NAME, columns, null, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -52,8 +51,8 @@ public class DBBehaviorManager {
     }
     public Cursor fetchDistictBEHAVIORDATEiod() {
 
-        String[] columns = new String[] { DatabaseBehaviorHelper._ID, DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE, DatabaseBehaviorHelper.BEHAVIORCONSEQUENCE, DatabaseBehaviorHelper.BEHAVIORPARENTCONTACT, DatabaseBehaviorHelper.BEHAVIORCOMMENTS };
-        Cursor cursor = database.query(DatabaseBehaviorHelper.TABLE_NAME, columns, DatabaseBehaviorHelper.BEHAVIORDATE + " like '%" + "" + "%'", null, DatabaseBehaviorHelper.BEHAVIORDATE, null, null, null);
+        String[] columns = new String[] { databaseBehaviorHelper._ID, databaseBehaviorHelper.BEHAVIORID, databaseBehaviorHelper.BEHAVIORNAME, databaseBehaviorHelper.BEHAVIORDATE, databaseBehaviorHelper.BEHAVIORCONSEQUENCE, databaseBehaviorHelper.BEHAVIORPARENTCONTACT, databaseBehaviorHelper.BEHAVIORCOMMENTS };
+        Cursor cursor = database.query(databaseBehaviorHelper.TABLE_NAME, columns, databaseBehaviorHelper.BEHAVIORDATE + " like '%" + "" + "%'", null, databaseBehaviorHelper.BEHAVIORDATE, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
         }
@@ -62,35 +61,35 @@ public class DBBehaviorManager {
 
     public int update(long _id, String student_id, String student_name, String student_per, String student_cons, String student_parent, String student_comments) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseBehaviorHelper.BEHAVIORID, student_id);
-        contentValues.put(DatabaseBehaviorHelper.BEHAVIORNAME, student_name);
-        contentValues.put(DatabaseBehaviorHelper.BEHAVIORDATE, student_per);
-        contentValues.put(DatabaseBehaviorHelper.BEHAVIORCONSEQUENCE, student_cons);
-        contentValues.put(DatabaseBehaviorHelper.BEHAVIORPARENTCONTACT, student_parent);
-        contentValues.put(DatabaseBehaviorHelper.BEHAVIORCOMMENTS, student_comments);
-        int i = database.update(DatabaseBehaviorHelper.TABLE_NAME, contentValues, DatabaseBehaviorHelper._ID + " = " + _id, null);
+        contentValues.put(databaseBehaviorHelper.BEHAVIORID, student_id);
+        contentValues.put(databaseBehaviorHelper.BEHAVIORNAME, student_name);
+        contentValues.put(databaseBehaviorHelper.BEHAVIORDATE, student_per);
+        contentValues.put(databaseBehaviorHelper.BEHAVIORCONSEQUENCE, student_cons);
+        contentValues.put(databaseBehaviorHelper.BEHAVIORPARENTCONTACT, student_parent);
+        contentValues.put(databaseBehaviorHelper.BEHAVIORCOMMENTS, student_comments);
+        int i = database.update(databaseBehaviorHelper.TABLE_NAME, contentValues, databaseBehaviorHelper._ID + " = " + _id, null);
         return i;
     }
 
     public void delete(long _id) {
-        database.delete(DatabaseBehaviorHelper.TABLE_NAME, DatabaseBehaviorHelper._ID + "=" + _id, null);
+        database.delete(databaseBehaviorHelper.TABLE_NAME, databaseBehaviorHelper._ID + "=" + _id, null);
     }
 
     public Cursor fetchCountriesByName(String inputText) throws SQLException {
         //Log.w(TAG, inputText);
         Cursor mCursor = null;
         if (inputText == null  ||  inputText.length () == 0)  {
-            mCursor = database.query(DatabaseBehaviorHelper.TABLE_NAME, new String[] {DatabaseBehaviorHelper._ID,
-                            DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE,
-                            DatabaseBehaviorHelper.BEHAVIORCONSEQUENCE, DatabaseBehaviorHelper.BEHAVIORPARENTCONTACT, DatabaseBehaviorHelper.BEHAVIORCOMMENTS},
+            mCursor = database.query(databaseBehaviorHelper.TABLE_NAME, new String[] {databaseBehaviorHelper._ID,
+                            databaseBehaviorHelper.BEHAVIORID, databaseBehaviorHelper.BEHAVIORNAME, databaseBehaviorHelper.BEHAVIORDATE,
+                            databaseBehaviorHelper.BEHAVIORCONSEQUENCE, databaseBehaviorHelper.BEHAVIORPARENTCONTACT, databaseBehaviorHelper.BEHAVIORCOMMENTS},
                     null, null, null, null, null);
 
         }
         else {
-            mCursor = database.query(true, DatabaseBehaviorHelper.TABLE_NAME, new String[] {DatabaseBehaviorHelper._ID,
-                            DatabaseBehaviorHelper.BEHAVIORID, DatabaseBehaviorHelper.BEHAVIORNAME, DatabaseBehaviorHelper.BEHAVIORDATE,
-                            DatabaseBehaviorHelper.BEHAVIORCONSEQUENCE, DatabaseBehaviorHelper.BEHAVIORPARENTCONTACT, DatabaseBehaviorHelper.BEHAVIORCOMMENTS},
-                    DatabaseBehaviorHelper.BEHAVIORID + " like '%" + inputText + "%'", null,
+            mCursor = database.query(true, databaseBehaviorHelper.TABLE_NAME, new String[] {databaseBehaviorHelper._ID,
+                            databaseBehaviorHelper.BEHAVIORID, databaseBehaviorHelper.BEHAVIORNAME, databaseBehaviorHelper.BEHAVIORDATE,
+                            databaseBehaviorHelper.BEHAVIORCONSEQUENCE, databaseBehaviorHelper.BEHAVIORPARENTCONTACT, databaseBehaviorHelper.BEHAVIORCOMMENTS},
+                    databaseBehaviorHelper.BEHAVIORID + " like '%" + inputText + "%'", null,
                     null, null, null, null);
         }
         if (mCursor != null) {

@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.List;
 
 public class AddBehaviorActivity extends Activity implements OnClickListener {
     private DatePicker datePicker;
@@ -30,6 +33,8 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
     private EditText behaviorConsEditText;
     private EditText behaviorParentContactEditText;
     private EditText behaviorCommentEditText;
+
+    Spinner myconsSpinner;
 
     private DBBehaviorManager dbManager;
 
@@ -54,6 +59,8 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
         behavioridEditText = (EditText) findViewById(R.id.behaviorid_edittext);
         behavioridEditText.setText(itemId.toString());
 
+        myconsSpinner=(Spinner) findViewById(R.id.spinner_consequence);
+        loadSpinnerData();
 
         Spinner mySpinner=(Spinner) findViewById(R.id.behaviorname_edittext);
         String behaviorNameEditText = mySpinner.getSelectedItem().toString();
@@ -90,6 +97,8 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
 
                 Spinner myconsSpinner=(Spinner) findViewById(R.id.spinner_consequence);
                 String studentcons = myconsSpinner.getSelectedItem().toString();
+
+                loadSpinnerData();
 
                 Spinner myParentContactSpinner=(Spinner) findViewById(R.id.spinner_parent_contact);
                 String studentParentContact = myParentContactSpinner.getSelectedItem().toString();
@@ -140,5 +149,40 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
     private void showDate(int year, int month, int day) {
         behaviorDateEditText.setText(new StringBuilder().append(month).append("/")
                 .append(day).append("/").append(year));
+    }
+
+    /**
+     * Function to load the spinner data from SQLite database
+     * */
+    private void loadSpinnerData() {
+        DatabaseConsequenceHelper db = new DatabaseConsequenceHelper(getApplicationContext());
+        List<String> lables = db.getAllLabels();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, lables);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        myconsSpinner.setAdapter(dataAdapter);
+    }
+
+    //@Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position,
+                               long id) {
+        // On selecting a spinner item
+        String label = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "You selected: " + label,
+                Toast.LENGTH_LONG).show();
+
+    }
+
+    //@Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // Auto-generated method stub
+
     }
 }

@@ -6,4 +6,14 @@
         android:title="@string/display_in_grid"
         android:summary="Display menu data in a multi-column grid"
         android:key="@string/pref_display_grid" />
+
+    <Preference
+    android:title="Consequence List"
+    android:summary="Change the list of consequences">
+    <intent
+        android:action="android.intent.action.VIEW"
+        android:targetPackage="com.journaldev.sqlite"
+        android:targetClass="com.journaldev.sqlite.ConsequenceListActivity"
+        />
+    </Preference>
 </PreferenceScreen>
