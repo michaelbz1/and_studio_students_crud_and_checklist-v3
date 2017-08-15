@@ -48,7 +48,7 @@ public class AddBehaviorActivity extends Activity implements OnClickListener {
 
         Intent intent = getIntent();
         Bundle bundle =  intent.getExtras();
-        //This messed with me for TOO LONG!  DataItemAdapter  ITEM_ID = "item_id" and thats whats needed
+        //This messed with me for TOO LONG!  DataItemAdapter  ITEM_ID = "item_id" and thats what is needed
         itemId =  bundle.getString("item_id");
         itemName =  bundle.getString("item_name");
 
