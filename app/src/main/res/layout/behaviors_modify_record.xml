@@ -6,7 +6,7 @@
     android:padding="10dp" >
 
     <EditText
-        android:id="@+id/consequence_sort_edittextview"
+        android:id="@+id/behaviors_sort_edittextview"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:maxLines="1"
@@ -16,7 +16,7 @@
         android:visibility="visible"/>
 
     <EditText
-        android:id="@+id/consequence_name_edittextview"
+        android:id="@+id/behaviors_name_edittextview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:maxLines="1"

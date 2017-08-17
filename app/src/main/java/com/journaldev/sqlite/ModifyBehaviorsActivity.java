@@ -23,7 +23,7 @@ public class ModifyBehaviorsActivity extends Activity implements OnClickListener
     public String itemName;
 
 
-    private DBConsequenceManager dbManager;
+    private DBBehaviorsManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +39,13 @@ public class ModifyBehaviorsActivity extends Activity implements OnClickListener
 
         setTitle("Modify Record");
 
-        setContentView(R.layout.consequence_modify_record);
+        setContentView(R.layout.behaviors_modify_record);
 
-        dbManager = new DBConsequenceManager(this);
+        dbManager = new DBBehaviorsManager(this);
         dbManager.open();
 
-        studentidText = (EditText) findViewById(R.id.consequence_name_edittextview);
-        studentnameText = (EditText) findViewById(R.id.consequence_sort_edittextview);
+        studentidText = (EditText) findViewById(R.id.behaviors_name_edittextview);
+        studentnameText = (EditText) findViewById(R.id.behaviors_sort_edittextview);
 
         updateBtn = (Button) findViewById(R.id.btn_update);
         deleteBtn = (Button) findViewById(R.id.btn_delete);

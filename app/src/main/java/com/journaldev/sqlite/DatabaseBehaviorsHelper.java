@@ -71,7 +71,7 @@ public class DatabaseBehaviorsHelper extends SQLiteOpenHelper {
         List<String> labels = new ArrayList<String>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_NAME;
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME + " order by BEHAVIORDATE" ;
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
