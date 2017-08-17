@@ -16,7 +16,7 @@ public class SampleDataProvider {
         dataItemMap = new HashMap<>();
 
     //FROM DataItem.java ******   public DataItem(String itemId, String Name(firstandlastname), String category(period), String description(notused), int sortPosition(studentid), double price(notused), String image) {
-        addItem(new DataItem(null, "Jack Frost", "1", "", 12345678, 9, "apple_pie.jpg"));
+        addItem(new DataItem(null, "Jane Frost", "1", "", 12345678, 9, "bus.jpg"));
     }
 
     private static void addItem(DataItem item) {

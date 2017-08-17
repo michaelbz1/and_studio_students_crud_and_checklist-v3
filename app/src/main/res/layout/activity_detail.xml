@@ -55,7 +55,7 @@
         android:layout_marginTop="16dp"
         android:scaleType="fitCenter"
         android:visibility="gone"
-        app:srcCompat="@drawable/apple_pie" />
+        app:srcCompat="@drawable/bus" />
 
     <TextView
         android:id="@+id/tvDescription"
