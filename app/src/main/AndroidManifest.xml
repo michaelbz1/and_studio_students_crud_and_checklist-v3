@@ -104,6 +104,19 @@
             android:label="Behaviors"
             />
 
+        <activity android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:name=".ModifyClassPeriodsActivity"
+            />
+
+        <activity android:theme="@android:style/Theme.DeviceDefault.Light.Dialog"
+            android:name=".AddClassPeriodsActivity"
+            />
+
+        <activity android:theme="@style/AppTheme"
+            android:name=".ClassPeriodsListActivity"
+            android:label="Class Periods"
+            />
+
     </application>
 
 </manifest>

@@ -26,4 +26,14 @@
             android:targetClass="com.journaldev.sqlite.BehaviorsListActivity"
             />
     </Preference>
+
+    <Preference
+        android:title="Class Periods List"
+        android:summary="Change the list of class periods">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.journaldev.sqlite"
+            android:targetClass="com.journaldev.sqlite.ClassPeriodsListActivity"
+            />
+    </Preference>
 </PreferenceScreen>

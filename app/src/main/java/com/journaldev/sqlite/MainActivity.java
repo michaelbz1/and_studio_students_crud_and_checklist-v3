@@ -20,7 +20,10 @@ import com.journaldev.sqlite.database.StudentDataSource;
 import com.journaldev.sqlite.model.DataItem;
 import com.journaldev.sqlite.sample.SampleDataProvider;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.id.list;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +47,24 @@ public class MainActivity extends AppCompatActivity {
 
 //      Code to manage sliding navigation drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mCategories = getResources().getStringArray(R.array.categories);
+
+        //Get periods from database
+        DatabaseClassPeriodsHelper db = new DatabaseClassPeriodsHelper(getApplicationContext());
+        List<String> periods = db.getAllPeriods();
+
+        //this was the old code to get it from the resources
+        //mCategories = getResources().getStringArray(R.array.categories);
+        List<String> stockList = db.getAllPeriods();
+        String[] stringArray = stockList.toArray(new String[0]);
+
+        mCategories = stringArray;
+
+        //for(String s : stockArr)
+        //    System.out.println(s);
+
+        //mCategories = periods;
+
+
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
         mDrawerList.setAdapter(new ArrayAdapter<>(this,
                 R.layout.drawer_list_item, mCategories));
